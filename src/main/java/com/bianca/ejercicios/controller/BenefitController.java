@@ -47,4 +47,10 @@ public class BenefitController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No existen beneficios que coincidan con el tipo variable.") :
                 ResponseEntity.status(HttpStatus.OK).body(benefits.toString());
     }
+
+    @GetMapping("/2")
+    public void exerciseTwo() throws IOException {
+        benefitService.convertWithOptional();
+        System.out.println("BENEFICIOS = " + benefitService.convertWithOptional());
+    }
 }

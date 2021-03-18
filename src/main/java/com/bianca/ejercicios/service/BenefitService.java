@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,4 +56,13 @@ public class BenefitService {
         return benefitsVariable;
     }
 
+    //Método que deserealiza el json y lo convierte a una lista de beneficios con sus
+    //respectivos datos seteados. Devuelve un optional o un empty optional sino se pudo
+    //realizar correctamente
+    public Optional<ArrayList<Benefit>> convertWithOptional() throws IOException {
+        ArrayList<Benefit> benefits = objectMapper.readValue(new File(PATH_FILE),
+                                    objectMapper.getTypeFactory()
+                                    .constructCollectionType(ArrayList.class, Benefit.class));
+        return (benefits.isEmpty()) ? Optional.empty() : Optional.of(benefits);
+    }
 }
