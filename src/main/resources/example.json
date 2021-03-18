@@ -1,0 +1,32 @@
+[
+    {
+      "type": "VARIABLE",
+      "id": 0,
+      "discount_amount": 120.4,
+      "foreign_key": 0
+    },
+    {
+      "type": "FIXED",
+      "id": 1,
+      "discount_amount": 360.0,
+      "foreign_key": 1
+    },
+    {
+      "type": "VARIABLE",
+      "id": 4,
+      "discount_amount": 1.0,
+      "foreign_key": 5
+    },
+    {
+      "type": "VARIABLE",
+      "id": 5,
+      "discount_amount": 10.1,
+      "foreign_key": 3
+    },
+    {
+      "type": "FIXED",
+      "id": 2,
+      "discount_amount": 69.0,
+      "foreign_key": 4
+    }
+]
