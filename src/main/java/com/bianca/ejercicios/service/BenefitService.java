@@ -35,7 +35,8 @@ public class BenefitService {
     //respectivos datos seteados
     public ArrayList<Benefit> convert() throws IOException {
         return objectMapper.readValue(new File(PATH_FILE),
-                objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Benefit.class));
+                objectMapper.getTypeFactory()
+                            .constructCollectionType(ArrayList.class, Benefit.class));
     }
 
     //Método que realiza persistencia de la lista de beneficios
