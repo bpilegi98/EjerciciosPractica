@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,10 +50,12 @@ public class BenefitService {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    /*
-    public void orderByDiscountAmountHighestToLowest()
-    {
-
+    //Método que ordena el array devuelvo en el método filterVariable
+    //de mayor a menor por el valor de discount_amount
+    public ArrayList<Benefit> orderByDiscountAmountHighestToLowest() throws IOException {
+        ArrayList<Benefit> benefitsVariable = filterVariable();
+        Collections.sort(benefitsVariable, Comparator.comparingDouble(Benefit::getDiscountAmount).reversed());
+        return benefitsVariable;
     }
-     */
+
 }

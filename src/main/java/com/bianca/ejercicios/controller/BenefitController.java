@@ -30,4 +30,9 @@ public class BenefitController {
     {
         benefitService.saveAll(benefitService.filterVariable());
     }
+
+    @GetMapping("/1b")
+    public void exerciseOneB() throws IOException {
+        System.out.println(benefitService.orderByDiscountAmountHighestToLowest());
+    }
 }
