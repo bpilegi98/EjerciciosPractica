@@ -24,11 +24,16 @@ public class BenefitService {
         this.benefitRepository = benefitRepository;
     }
 
+    public void saveAll(List<Benefit> benefits)
+    {
+        benefitRepository.saveAll(benefits);
+    }
+
     //Método que deserealiza el json y lo convierte a una lista de beneficios con sus
     //respectivos datos seteados
-    public List<Benefit> convert() throws IOException {
+    public ArrayList<Benefit> convert() throws IOException {
         return objectMapper.readValue(new File(PATH_FILE),
-                objectMapper.getTypeFactory().constructCollectionType(List.class, Benefit.class));
+                objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Benefit.class));
     }
 
     //Método que realiza persistencia de la lista de beneficios
@@ -36,10 +41,17 @@ public class BenefitService {
         benefitRepository.saveAll(convert());
     }
 
-    public void filterVariable() throws IOException {
-        List<Benefit> benefitsVariable = convert().stream()
+    //Método que filtra los beneficios que son variables
+    public ArrayList<Benefit> filterVariable() throws IOException {
+        return convert().stream()
                 .filter(b -> b.getType().equals(TypeBenefit.VARIABLE))
-                .collect(Collectors.toList());
-        benefitRepository.saveAll(benefitsVariable);
+                .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    /*
+    public void orderByDiscountAmountHighestToLowest()
+    {
+
+    }
+     */
 }

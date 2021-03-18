@@ -26,7 +26,8 @@ public class BenefitController {
     }
 
     @GetMapping("/1a")
-    public void exerciseOneA() throws IOException {
-        benefitService.filterVariable();
+    public void exerciseOneA() throws IOException
+    {
+        benefitService.saveAll(benefitService.filterVariable());
     }
 }
