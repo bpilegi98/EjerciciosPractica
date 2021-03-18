@@ -12,20 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Data
-@Entity
-@Table(name = "benefits")
 public class Benefit {
 
-    @Id
-    @GeneratedValue
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private TypeBenefit type;
 
-    @Column(name = "discount_amount")
     private double discountAmount;
-
-    @Column(name = "foreign_key")
     private Long foreignKey;
 }
