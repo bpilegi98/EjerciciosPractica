@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class BenefitController {
     }
 
     @GetMapping("/1")
-    public List<Benefit> exerciseOne() throws JsonProcessingException {
-        return benefitService.convert();
+    public void exerciseOne() throws IOException {
+        benefitService.convert();
     }
 }
