@@ -22,6 +22,6 @@ public class BenefitController {
 
     @GetMapping("/1")
     public void exerciseOne() throws IOException {
-        benefitService.convert();
+        benefitService.saveFromList();
     }
 }

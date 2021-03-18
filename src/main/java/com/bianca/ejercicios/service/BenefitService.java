@@ -22,13 +22,12 @@ public class BenefitService {
         this.benefitRepository = benefitRepository;
     }
 
-    public void convert() throws IOException {
-        List<Benefit> aux = objectMapper.readValue(new File(PATH_FILE),
+    public List<Benefit> convert() throws IOException {
+        return objectMapper.readValue(new File(PATH_FILE),
                 objectMapper.getTypeFactory().constructCollectionType(List.class, Benefit.class));
+    }
 
-        for(Benefit benefit : aux)
-        {
-            benefitRepository.save(benefit);
-        }
+    public void saveFromList() throws IOException {
+        benefitRepository.saveAll(convert());
     }
 }
