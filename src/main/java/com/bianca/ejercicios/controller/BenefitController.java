@@ -1,5 +1,6 @@
 package com.bianca.ejercicios.controller;
 
+import com.bianca.ejercicios.message.BenefitResponse;
 import com.bianca.ejercicios.model.Benefit;
 import com.bianca.ejercicios.service.BenefitService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,5 +44,10 @@ public class BenefitController {
     @GetMapping("/2")
     public void exerciseTwo() throws IOException {
         System.out.println("BENEFICIOS = " + benefitService.checkIfOptionalEmpty());
+    }
+
+    @GetMapping("/4")
+    public List<BenefitResponse> exerciseFour() throws IOException {
+        return benefitService.changeBenefitDataShown();
     }
 }
