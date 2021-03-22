@@ -1,5 +1,6 @@
 package com.bianca.ejercicios.service;
 
+import com.bianca.ejercicios.message.OptionalEmptyResponseImpl;
 import com.bianca.ejercicios.model.Benefit;
 import com.bianca.ejercicios.enums.TypeBenefit;
 import com.bianca.ejercicios.repository.BenefitRepository;
@@ -69,5 +70,13 @@ public class BenefitService {
     public Optional<List<Benefit>> convertWithOptional() throws IOException {
         List<Benefit> benefits = convertFromJsonToList();
         return (benefits.isEmpty()) ? Optional.empty() : Optional.of(benefits);
+    }
+
+    public String checkIfOptionalEmpty() throws IOException {
+        Optional<List<Benefit>> optional = this.convertWithOptional();
+
+        return (optional.isEmpty()) ?
+                new OptionalEmptyResponseImpl().getMessage() :
+                optional.toString();
     }
 }

@@ -42,7 +42,6 @@ public class BenefitController {
 
     @GetMapping("/2")
     public void exerciseTwo() throws IOException {
-        benefitService.convertWithOptional();
-        System.out.println("BENEFICIOS = " + benefitService.convertWithOptional());
+        System.out.println("BENEFICIOS = " + benefitService.checkIfOptionalEmpty());
     }
 }
