@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ejercicio")
+@RequestMapping("/benefit")
 public class BenefitController {
 
     private BenefitService benefitService;
@@ -20,34 +20,34 @@ public class BenefitController {
         this.benefitService = benefitService;
     }
 
-    @GetMapping("/1")
-    public void exerciseOne() throws IOException {
+    @GetMapping("/save")
+    public void saveFromList() throws IOException {
         benefitService.saveFromList();
     }
 
-    @GetMapping("/1a")
-    public void exerciseOneA() throws Exception
+    @GetMapping("/variable/save")
+    public void saveAllVariableBenefits() throws Exception
     {
         benefitService.saveAll(benefitService.filterVariable());
     }
 
-    @GetMapping("/1b")
-    public void exerciseOneB() throws Exception {
+    @GetMapping("/variable/order")
+    public void orderBenefitsByDiscoutAmount() throws Exception {
         System.out.println(benefitService.orderByDiscountAmountHighestToLowest());
     }
 
-    @GetMapping("/1c")
-    public List<Benefit> exerciseOneC() throws Exception {
+    @GetMapping("/variable/getAll")
+    public List<Benefit> getVariableBenefits() throws Exception {
         return benefitService.filterVariable();
     }
 
-    @GetMapping("/2")
-    public void exerciseTwo() throws IOException {
+    @GetMapping("/variable/optional")
+    public void getOptionalVariableBenefits() throws IOException {
         System.out.println("BENEFICIOS = " + benefitService.checkIfOptionalEmpty());
     }
 
-    @GetMapping("/4")
-    public List<BenefitResponse> exerciseFour() throws IOException {
+    @GetMapping("/client/getAll")
+    public List<BenefitResponse> getAllClientInterface() throws IOException {
         return benefitService.changeBenefitDataShown();
     }
 }
