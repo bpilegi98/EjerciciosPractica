@@ -1,7 +1,7 @@
-package com.bianca.ejercicios.model.enums;
+package com.bianca.ejercicios.enums;
 
 public enum TypeBenefit {
-    
+
     VARIABLE("VARIABLE"),
     FIXED("FIXED");
 
