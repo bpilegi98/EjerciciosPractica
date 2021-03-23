@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/benefit")
 public class BenefitController {
 
-    private BenefitService benefitService;
+    private final BenefitService benefitService;
 
     public BenefitController(BenefitService benefitService) {
         this.benefitService = benefitService;
