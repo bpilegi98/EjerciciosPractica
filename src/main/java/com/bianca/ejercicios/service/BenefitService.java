@@ -1,20 +1,21 @@
 package com.bianca.ejercicios.service;
 
+import com.bianca.ejercicios.enums.TypeBenefit;
 import com.bianca.ejercicios.message.BenefitResponse;
 import com.bianca.ejercicios.message.OptionalEmptyResponseImpl;
 import com.bianca.ejercicios.model.Benefit;
-import com.bianca.ejercicios.enums.TypeBenefit;
 import com.bianca.ejercicios.repository.BenefitRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.bianca.ejercicios.util.BenefitMapper.toSimpleInterfaceList;
 
 @Service
 public class BenefitService {
@@ -89,20 +90,7 @@ public class BenefitService {
     //y la setea en una nueva lista donde se utiliza dto de Beneficio
     //con la información del mismo simplificada
     public List<BenefitResponse> changeBenefitDataShown() throws IOException {
-        List<Benefit> benefits = this.convertFromJsonToList();
-        List<BenefitResponse> responseList = new ArrayList<>();
-
-        benefits.stream().forEach(b ->
-        {
-            BenefitResponse response = BenefitResponse.builder()
-                    .type(b.getType())
-                    .discountAmount(b.getDiscountAmount())
-                    .build();
-
-            responseList.add(response);
-        });
-
-        return responseList;
+        return toSimpleInterfaceList(this.convertFromJsonToList());
     }
 
 }
