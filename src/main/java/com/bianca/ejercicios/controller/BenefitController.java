@@ -1,5 +1,6 @@
 package com.bianca.ejercicios.controller;
 
+import com.bianca.ejercicios.exception.custom.BadRequestException;
 import com.bianca.ejercicios.message.BenefitResponse;
 import com.bianca.ejercicios.model.Benefit;
 import com.bianca.ejercicios.service.BenefitService;
@@ -42,7 +43,7 @@ public class BenefitController {
     }
 
     @GetMapping("/variable/optional")
-    public void getOptionalVariableBenefits() throws IOException {
+    public void getOptionalVariableBenefits() throws IOException, BadRequestException {
         System.out.println("BENEFICIOS = " + benefitService.checkIfOptionalEmpty());
     }
 

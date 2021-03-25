@@ -1,8 +1,8 @@
 package com.bianca.ejercicios.service;
 
 import com.bianca.ejercicios.enums.TypeBenefit;
+import com.bianca.ejercicios.exception.custom.BadRequestException;
 import com.bianca.ejercicios.message.BenefitResponse;
-import com.bianca.ejercicios.message.OptionalEmptyResponseImpl;
 import com.bianca.ejercicios.model.Benefit;
 import com.bianca.ejercicios.repository.BenefitRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,12 +78,8 @@ public class BenefitService {
     //Método que chequea si lo devuelto es un optional empty, en caso
     //de que lo sea retorna el mensaje seteado en la implementación
     //del wrapper, de lo contrario retorna un string del valor del optional
-    public String checkIfOptionalEmpty() throws IOException {
-        Optional<List<Benefit>> optional = this.convertWithOptional();
-
-        return (optional.isEmpty()) ?
-                new OptionalEmptyResponseImpl().getMessage() :
-                optional.toString();
+    public Optional checkIfOptionalEmpty() throws IOException, BadRequestException {
+        return Optional.of(convertWithOptional()).orElseThrow(() -> new BadRequestException("No se ha podido encontrar ningún beneficio."));
     }
 
     //Método que usa la lista de beneficios ya deserealizada del JSON
