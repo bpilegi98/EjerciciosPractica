@@ -14,6 +14,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,4 +36,10 @@ public class Benefit {
 
     @Column(name = "foreign_key")
     private Long foreignKey;
+
+    //^[A-Za-z0-9+_.-]+@(.+)$
+    //\b[a-zA-Z0-9._-]+@[A-Za-z]+\'.com'\b
+    //[a-zA-Z0-9_-]+@[A-Za-z]'.com'
+    @Pattern(regexp = "[a-zA-Z0-9_-]+@[A-Za-z]'.com'", message = "Debe respetar las normas")
+    private String mail;
 }

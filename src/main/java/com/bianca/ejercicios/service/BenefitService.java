@@ -8,6 +8,7 @@ import com.bianca.ejercicios.repository.BenefitRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
@@ -87,6 +88,16 @@ public class BenefitService {
     //con la información del mismo simplificada
     public List<BenefitResponse> changeBenefitDataShown() throws IOException {
         return toSimpleInterfaceList(this.convertFromJsonToList());
+    }
+
+    public static void validate(@Valid Benefit benefit)
+    {
+        System.out.println(benefit.getMail());
+    }
+
+    public int findById(int num)
+    {
+        return num + 5;
     }
 
 }

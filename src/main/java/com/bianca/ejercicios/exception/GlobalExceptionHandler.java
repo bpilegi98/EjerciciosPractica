@@ -2,7 +2,6 @@ package com.bianca.ejercicios.exception;
 
 import com.bianca.ejercicios.exception.custom.BadRequestException;
 import com.bianca.ejercicios.message.ErrorResponse;
-import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,9 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
-import java.util.logging.Level;
 
-@Log
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -26,8 +23,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .timestamp(new Date())
                 .message(exception.getMessage())
                 .build();
-
-        log.log(Level.WARNING, "Ha ocurrido un error al querer realizar esa acción.");
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
@@ -41,8 +36,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .message("El archivo del cual se está queriendo obtener los beneficios no existe.")
                 .build();
 
-        log.log(Level.WARNING, "El archivo JSON especificado no existe.");
-
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -54,8 +47,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .timestamp(new Date())
                 .message("Ha ocurrido un error en la integridad de datos.")
                 .build();
-
-        log.log(Level.WARNING, "Hubo un problema con la integridad de datos.");
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
