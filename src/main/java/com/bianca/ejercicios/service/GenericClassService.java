@@ -19,9 +19,14 @@ public class GenericClassService {
         return genericClassRepository.findAll();
     }
 
-    public static <T> void display(T obj)
+    public static <T> void display(GenericClass<T> obj)
     {
         System.out.println(obj.getClass().getSimpleName() + " = " + obj);
+    }
+
+    public static void displayString(GenericClass<String> obj)
+    {
+        System.out.println(obj.getObject());
     }
 
     public void save(GenericClass object)
@@ -37,4 +42,5 @@ public class GenericClassService {
             this.display(obj);
         }
     }
+
 }

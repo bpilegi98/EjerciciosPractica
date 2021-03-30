@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class GenericClass <T>{
 
-    T object;
+    private T object;
 
 }

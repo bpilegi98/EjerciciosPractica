@@ -9,21 +9,29 @@ class GenericClassServiceTest extends Specification {
     def genericRepository = Mock(GenericClassRepository)
     def genericService = new GenericClassService(genericRepository)
 
-    def "testCase"()
-    {
-        declaration:
-        def generic = Mock(GenericClass)
-        usage:
-        generic as GenericClass<String>
-    }
 
     def "GetAll"() {
         given:
-        def generics = [Stub(GenericClass), Stub(GenericClass)]
-        genericRepository.findAll() >> [new GenericClass(new String()), new GenericClass(new Integer())]
+        def genericString = (GenericClass<String>) Mock(GenericClass){
+            getObject() >> "Hola"
+        }
+        def generics = [genericString]
+        genericRepository.findAll() >> generics
         when:
-        Iterable<GenericClass> result = genericRepository.findAll()
+        Iterable<GenericClass<String>> result = genericService.getAll()
         then:
-        result.toString() == generics.toString()
+        result.getAt(0).getObject().equals(generics.get(0).getObject())
+    }
+
+    def "Test display"()
+    {
+        given:
+        def genericString = (GenericClass<String>) Mock(GenericClass){
+            getObject() >> "Hola"
+        }
+        when:
+        genericService.displayString(genericString)
+        then:
+        true
     }
 }
